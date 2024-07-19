@@ -93,6 +93,7 @@ This plugin provides additional commands as described in the following table.
 | Switch to last active Tab | `tabsSwitchLastActive` | Switch to the last active tab, i.e. to previous selected note.                                | `Tools>Tabs`, `Command palette`                                     |
 | Switch to left Tab        | `tabsSwitchLeft`       | Switch to the left tab next to the active, i.e. select the left note.                         | `Tools>Tabs`, `Command palette`                                     |
 | Switch to right Tab       | `tabsSwitchRight`      | Switch to the right tab next to the active, i.e. select the right note.                       | `Tools>Tabs`, `Command palette`                                     |
+| Switch to right Tab       | `tabsSwitchRightCirclely`      | Switch to the right tab next to the active, if is the last right, select the first.                      | `Tools>Tabs`, `Command palette`                                     |
 | Move active Tab left      | `tabsMoveLeft`         | Move active tab one position to the left.                                                     | `Tools>Tabs`, `Command palette`                                     |
 | Move active Tab right     | `tabsMoveRight`        | Move active tab one position to the right.                                                    | `Tools>Tabs`, `Command palette`                                     |
 | Remove all pinned Tabs    | `tabsClear`            | Remove all pinned tabs. In case no note is selected, the tabs list might be empty afterwards. | `Tools>Tabs`, `Command palette`                                     |
@@ -130,6 +131,10 @@ In the keyboard shortcut editor, search for the command label where shortcuts sh
   {
     "command": "tabsSwitchRight",
     "accelerator": "Ctrl+Right"
+  },
+  {
+    commandName: 'tabsSwitchRightCirclely',
+    label: 'Switch to right Tab Circlely'
   },
   {
     "command": "tabsUnpinNote",

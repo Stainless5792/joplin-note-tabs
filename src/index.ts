@@ -108,6 +108,19 @@ joplin.plugins.register({
     }
 
     /**
+     * Switch to right tab Circlely.
+     */
+    async function switchTabRightCirclely(noteId: string): Promise<boolean> {
+      const index: number = tabs.indexOf(noteId);
+      if (index < 0) return false;
+      // if (index == tabs.length - 1) return false;
+
+      // await COMMANDS.execute('openNote', tabs.get(index + 1).id);
+      await COMMANDS.execute('openNote', tabs.get((index + 1)/tabs.length).id);
+      return true;
+    }
+
+    /**
      * Remove or unpin note with handled id.
      */
     async function removeTab(noteId: string) {
@@ -278,6 +291,22 @@ joplin.plugins.register({
       }
     });
 
+    // Command: tabsSwitchRightCirclely
+    // Desc: Switch to right tab, i.e. select right note
+    await COMMANDS.register({
+      name: 'tabsSwitchRightCirclely',
+      label: 'Switch to right Tab Circlely',
+      iconName: 'fas fa-step-forward',
+      enabledCondition: 'oneNoteSelected',
+      execute: async () => {
+        const selectedNote: any = await WORKSPACE.selectedNote();
+        if (!selectedNote) return;
+
+        await switchTabRightCirclely(selectedNote.id);
+        // updateWebview() is called from onNoteSelectionChange event
+      }
+    });
+
     // Command: tabsClear
     // Desc: Remove all pinned tabs
     await COMMANDS.register({
@@ -334,6 +363,10 @@ joplin.plugins.register({
       {
         commandName: 'tabsSwitchRight',
         label: 'Switch to right Tab'
+      },
+      {
+        commandName: 'tabsSwitchRightCirclely',
+        label: 'Switch to right Tab Circlely'
       },
       {
         commandName: 'tabsMoveLeft',

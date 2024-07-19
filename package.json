@@ -1,15 +1,15 @@
 {
-  "name": "joplin-plugin-note-tabs",
-  "version": "1.4.0",
+  "name": "joplin-plugin-note-tabs_mky",
+  "version": "1.4.0_mky",
   "description": "Allows to open several notes at once in tabs and pin them.",
-  "author": "Benji300",
-  "homepage": "https://github.com/benji300/joplin-note-tabs",
+  "author": "Stainless5792",
+  "homepage": "https://github.com/Stainless5792/joplin-note-tabs.git",
   "bugs": {
-    "url": "https://github.com/benji300/joplin-note-tabs/issues"
+    "url": "https://github.com/Stainless5792/joplin-note-tabs.git/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/benji300/joplin-note-tabs.git"
+    "url": "git+https://github.com/Stainless5792/joplin-note-tabs.git.git"
   },
   "scripts": {
     "dist": "webpack --joplin-plugin-config buildMain && webpack --joplin-plugin-config buildExtraScripts && webpack --joplin-plugin-config createArchive",
