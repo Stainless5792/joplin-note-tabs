@@ -116,7 +116,7 @@ joplin.plugins.register({
       // if (index == tabs.length - 1) return false;
 
       // await COMMANDS.execute('openNote', tabs.get(index + 1).id);
-      await COMMANDS.execute('openNote', tabs.get((index + 1)/tabs.length).id);
+      await COMMANDS.execute('openNote', tabs.get((index + 1)%tabs.length).id);
       return true;
     }
 
