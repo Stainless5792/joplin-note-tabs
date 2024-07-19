@@ -258,10 +258,10 @@ export class Panel {
     if (this.sets.showBreadcrumbs && selectedNote) {
       let parentsHtml: any[] = new Array();
 
-      // // collect all parent folders and prepare html container for each
-      // let parents: any[] = await this.getNoteParents(selectedNote.parent_id);
-      // collect all parent folders and prepare html container for each, also include the note itself 
-      let parents: any[] = await this.getNoteParents(selectedNote.id);
+      // collect all parent folders and prepare html container for each
+      let parents: any[] = await this.getNoteParents(selectedNote.parent_id);
+      // // collect all parent folders and prepare html container for each, also include the note itself 
+      // let parents: any[] = await this.getNoteParents(selectedNote.id);
       while (parents) {
         const parent: any = parents.pop();
         if (!parent) break;
@@ -277,6 +277,18 @@ export class Panel {
       }
 
       if (parentsHtml) {
+
+        // collect all parent folders and prepare html container for each, also include the note itself 
+        parentsHtml.push(`
+          <div class="breadcrumb" data-id="${selectedNote.id}" 
+            style="max-width:${this.sets.breadcrumbsMaxWidth}px;">
+            <span class="breadcrumb-inner">
+              <a href="#" class="breadcrumb-title" style="color:${this.sets.foreground};" title="${selectedNote.title}">${selectedNote.title}</a>
+              <span class="fas fa-chevron-right" style="color:${this.sets.foreground};"></span>
+            </span>
+          </div>
+        `);
+
         breadcrumbsHtml = `
           <div class="breadcrumbs-icon">
             <span class="fas fa-book" style="color:${this.sets.foreground};"></span>
