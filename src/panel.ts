@@ -258,8 +258,10 @@ export class Panel {
     if (this.sets.showBreadcrumbs && selectedNote) {
       let parentsHtml: any[] = new Array();
 
-      // collect all parent folders and prepare html container for each
-      let parents: any[] = await this.getNoteParents(selectedNote.parent_id);
+      // // collect all parent folders and prepare html container for each
+      // let parents: any[] = await this.getNoteParents(selectedNote.parent_id);
+      // collect all parent folders and prepare html container for each, also include the note itself 
+      let parents: any[] = await this.getNoteParents(selectedNote.id);
       while (parents) {
         const parent: any = parents.pop();
         if (!parent) break;
