@@ -209,7 +209,7 @@ The npm package of the plugin can be found [here](https://www.npmjs.com/package/
 If you want to build the plugin by your own simply run `npm run dist`.
 
 ### Updating the plugin framework
-
+Build with Docker `docker run --rm -it node:11 bash`
 To update the plugin framework, run `npm run update`.
 
 ## Changes
