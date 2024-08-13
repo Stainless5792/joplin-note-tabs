@@ -88,8 +88,9 @@ joplin.plugins.register({
      * Switch to left tab.
      */
     async function switchTabLeft(noteId: string): Promise<boolean> {
-      const index: number = tabs.indexOf(noteId);
-      if (index <= 0) return false;
+      let index: number = tabs.indexOf(noteId);
+      if (index < 0) return false;
+      if (index == 0) index = tabs.length;
 
       await COMMANDS.execute('openNote', tabs.get(index - 1).id);
       return true;
@@ -101,9 +102,10 @@ joplin.plugins.register({
     async function switchTabRight(noteId: string): Promise<boolean> {
       const index: number = tabs.indexOf(noteId);
       if (index < 0) return false;
-      if (index == tabs.length - 1) return false;
+      // if (index == tabs.length - 1) return false;
 
-      await COMMANDS.execute('openNote', tabs.get(index + 1).id);
+      // await COMMANDS.execute('openNote', tabs.get(index + 1).id);
+      await COMMANDS.execute('openNote', tabs.get((index + 1)%tabs.length).id);
       return true;
     }
 
