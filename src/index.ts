@@ -76,9 +76,20 @@ joplin.plugins.register({
     async function openLastActiveNote(): Promise<boolean> {
       if (lastActiveNote.length < 2) return false;
 
-      const lastActiveNoteId = lastActiveNote.id;
-      // return if an already removed tab is about to be restored
-      if (tabs.indexOf(lastActiveNoteId) < 0) return false;
+      let lastActiveNoteId = lastActiveNote.id;
+      // // return if an already removed tab is about to be restored
+      // if (tabs.indexOf(lastActiveNoteId) < 0) return false;
+
+      // 2024-12-13 update: if the last active note is not in the tabs anymore, try to select another one
+      // also should not be the active tab
+      let selectedNoteIds = await WORKSPACE.selectedNoteIds();
+      if (tabs.indexOf(lastActiveNoteId) < 0) {
+        lastActiveNoteId = tabs.get(tabs.length - 1).id;
+        if (selectedNoteIds.includes(lastActiveNoteId)) {
+          lastActiveNoteId = tabs.get(tabs.length - 2).id;
+        }
+      }
+      lastActiveNote.id = lastActiveNoteId;
 
       await COMMANDS.execute('openNote', lastActiveNoteId);
       return true;
