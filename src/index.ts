@@ -100,7 +100,12 @@ joplin.plugins.register({
      */
     async function switchTabLeft(noteId: string): Promise<boolean> {
       let index: number = tabs.indexOf(noteId);
-      if (index < 0) return false;
+      // if (index < 0) return false;
+      if (index < 0){
+        // if can not find the index, always open the first tab
+        await COMMANDS.execute('openNote', tabs.get(0).id);
+        return true;
+      }
       if (index == 0) index = tabs.length;
 
       await COMMANDS.execute('openNote', tabs.get(index - 1).id);
@@ -112,7 +117,11 @@ joplin.plugins.register({
      */
     async function switchTabRight(noteId: string): Promise<boolean> {
       const index: number = tabs.indexOf(noteId);
-      if (index < 0) return false;
+      if (index < 0) {
+        // if can not find the index, always open the first tab
+        await COMMANDS.execute('openNote', tabs.get(0).id);
+        return true;
+      }
       // if (index == tabs.length - 1) return false;
 
       // await COMMANDS.execute('openNote', tabs.get(index + 1).id);
@@ -125,7 +134,13 @@ joplin.plugins.register({
      */
     async function switchTabRightCirclely(noteId: string): Promise<boolean> {
       const index: number = tabs.indexOf(noteId);
-      if (index < 0) return false;
+      if (index < 0) {
+        // if can not find the index, always open the first tab
+        await COMMANDS.execute('openNote', tabs.get(0).id);
+        return true;
+      }
+      
+      // if (index < 0) return false;
       // if (index == tabs.length - 1) return false;
 
       // await COMMANDS.execute('openNote', tabs.get(index + 1).id);
